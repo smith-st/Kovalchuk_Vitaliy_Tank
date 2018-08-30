@@ -1,9 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
+﻿using System;
 
 namespace TestGame{
-	public class GameEvent {
+	public static class GameEvent {
 
 		public static event Action<Tank> 		OnTankDestroyed;
 		public static event Action<Bullet> 		OnBulletDestroyed;

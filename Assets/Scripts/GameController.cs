@@ -8,26 +8,25 @@ using System.Linq;
 namespace TestGame{
 	public class GameController : MonoBehaviour {
 
+		public PlayerController playerController;
 		public GameObject playerTankPrefab;
 		public GameObject evilTankPrefab;
 		public List<Transform> respawnPoints = new List<Transform> ();
-		private List<Tank> forRespawn = new List<Tank> ();
+		List<Tank> forRespawn = new List<Tank> ();
 
-		private IMoveable tankMove;
-		private IShotable tankShot;
 
 		void Start(){
-
 			bool addPlayerTank = false;
 			GameObject go;
+			//добавляем танки на точки появления
 			foreach (Transform item in respawnPoints) {
 				if (!addPlayerTank) {
 					addPlayerTank = true;
 					go = AddTank (playerTankPrefab, item.position);
-					tankMove = go.GetComponent<IMoveable> ();
-					tankShot = go.GetComponent<IShotable> ();
+					if (playerController)
+						playerController.SetPlayer (go);
 				} else {
-					go = AddTank (evilTankPrefab, item.position);
+					AddTank (evilTankPrefab, item.position);
 				}
 			}
 
@@ -35,17 +34,19 @@ namespace TestGame{
 			GameEvent.OnBulletDestroyed += GameEvent_OnBulletDestroyed;
 		}
 
-		void GameEvent_OnBulletDestroyed (Bullet bullet){
-			if (tankShot != null) {
-				tankShot.AddBullet (bullet);
-			}
-		}
-
 		void OnDestroy(){
 			GameEvent.OnTankDestroyed -= GameEvent_OnTankDestroyed;
 			GameEvent.OnBulletDestroyed -= GameEvent_OnBulletDestroyed;
 		}
-
+		/// <summary>
+		/// Снярд уничтожился, возвращаем его игроку
+		/// </summary>
+		void GameEvent_OnBulletDestroyed (Bullet bullet){
+			playerController.SetBullet (bullet);
+		}
+		/// <summary>
+		/// танк уничтожен, перерождаем его через 1 сек
+		/// </summary>
 		void GameEvent_OnTankDestroyed (Tank tank){
 			forRespawn.Add (tank);
 			tank.gameObject.SetActive (false);
@@ -53,39 +54,27 @@ namespace TestGame{
 				Invoke ("RespawnTank", 1f);
 		}
 
+		/// <summary>
+		/// добавляет танк на игровое поле
+		/// </summary>
+		/// <returns>The tank.</returns>
+		/// <param name="prefab">префаб танка</param>
+		/// <param name="point">точка появления</param>
 		GameObject AddTank(GameObject prefab, Vector2 point){
 			return Instantiate(prefab, point, Quaternion.Euler (0f, 0f, (float)Random.Range (1, 4) * 90f));
 		}
-
+		/// <summary>
+		/// перерождение танка
+		/// </summary>
 		void RespawnTank(){
 			if (forRespawn [0] != null) {
-				int ind = Random.Range (0, respawnPoints.Count);
 				forRespawn [0].gameObject.SetActive (true);
-				forRespawn [0].gameObject.transform.position = new Vector3 (
-					respawnPoints [ind].position.x,
-					respawnPoints [ind].position.y,
-					respawnPoints [ind].position.z
-				); 
+				forRespawn [0].gameObject.transform.position = respawnPoints [Random.Range (0, respawnPoints.Count)].position;
 				forRespawn [0].Respawn ();
 				forRespawn.RemoveAt (0);
 				if (forRespawn.Count > 0)
 					Invoke ("RespawnTank", 1f);
 			}
-		}
-
-		void FixedUpdate () {
-			if (tankMove != null) {
-				tankMove.Direction (Input.GetAxis ("Vertical"));
-				tankMove.Rotate (Input.GetAxis ("Horizontal"));
-			}
-
-		}
-		void Update () {
-			if (tankShot != null) {
-				if (Input.GetButton ("Fire1"))
-					tankShot.Shot ();
-			}
-
 		}
 	}
 }

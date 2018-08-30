@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace TestGame{
 	public class EvilTank : SkinableTank {
@@ -20,13 +18,32 @@ namespace TestGame{
 			gap = rotationSpeed*0.1f;
 			StartMove ();
 		}
+		protected override void CollisionWithBullet (){
+			base.CollisionWithBullet ();
+			DestroyMe ();
+		}
 
+		protected override void CollisionWithWall (){
+			base.CollisionWithWall ();
+			Obstacle ();
+		}
+
+		protected override void CollisionWithTank (){
+			base.CollisionWithTank ();
+			Obstacle ();
+		}
+		/// <summary>
+		/// движение танка вперед
+		/// </summary>
 		void StartMove(){
 			status = Status.MOVE;
 			rotateDirection = 0f;
 			rotateTo = -1f;
 			movingTime = Random.Range (50, 100);
 		}
+		/// <summary>
+		/// поворот танка
+		/// </summary>
 		void StartRotate(){
 			status = Status.ROTATE;
 			movingTime = 0;
@@ -53,12 +70,14 @@ namespace TestGame{
 
 		void FixedUpdate(){
 			if (status == Status.MOVE) {
+				//если танк двигается
 				movingTime--;
 				if (movingTime > 0)
 					this.Direction (1f);
 				else
 					StartRotate ();
 			} else {
+				//если разворачивается
 				if (rotateTo != -1f) {
 					this.Rotate (rotateDirection);				
 					float angl = normalizedAngle (this.body.rotation);
@@ -66,34 +85,26 @@ namespace TestGame{
 							angl >= rotateTo - gap
 						&&	angl <= rotateTo + gap
 					) {
+						//если повернулся до нужного угла, выравниваем танк и продожаем движение
 						this.RotateImmediately (rotateTo);
 						StartMove ();
 					}
 				}
 			}
 		}
-
-		protected override void CollisionWithBullet (){
-			base.CollisionWithBullet ();
-			DestroyMe ();
-		}
-
-		protected override void CollisionWithWall (){
-			base.CollisionWithWall ();
-			Obstacle ();
-		}
-
-		protected override void CollisionWithTank (){
-			base.CollisionWithTank ();
-			Obstacle ();
-		}
-
+		/// <summary>
+		/// столковение с преградой
+		/// </summary>
 		void Obstacle(){
 			if (status == Status.MOVE) {//если танк сейчас движется
 				StartRotate ();
 			}
 		}
-		//преобразует угол от 0 до 360
+		/// <summary>
+		/// преобразует угол от 0 до 360
+		/// </summary>
+		/// <returns>The angle.</returns>
+		/// <param name="angle">Angle.</param>
 		float normalizedAngle(float angle){
 			float norm = angle % 360f;
 			if (norm < 0f)

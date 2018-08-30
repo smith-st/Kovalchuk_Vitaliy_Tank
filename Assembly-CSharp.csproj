@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\GameEvent.cs" />
      <Compile Include="Assets\Scripts\IMoveable.cs" />
      <Compile Include="Assets\Scripts\IShotable.cs" />
+     <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlayerTank.cs" />
      <Compile Include="Assets\Scripts\SkinableTank.cs" />
      <Compile Include="Assets\Scripts\Tank.cs" />

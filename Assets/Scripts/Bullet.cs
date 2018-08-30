@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace TestGame
-{
+namespace TestGame{
     [RequireComponent(typeof(Rigidbody2D))]
     public class Bullet : MonoBehaviour
     {
@@ -12,7 +9,11 @@ namespace TestGame
         void Awake(){
             rb2d = GetComponent<Rigidbody2D>();
         }
-
+		/// <summary>
+		/// Выстрел в указаном направлении из указаной точки
+		/// </summary>
+		/// <param name="direction">куда</param>
+		/// <param name="from">откуда</param>
 		public void Shot(Vector2 direction, Vector2 from){
 			transform.position = from;
 			Shot (direction);
@@ -22,7 +23,10 @@ namespace TestGame
 			gameObject.SetActive (true);
 			rb2d.AddForce (direction * movingSpeed,	ForceMode2D.Force);
         }
-
+		/// <summary>
+		/// при столкновении с другим танком или стеной
+		/// </summary>
+		/// <param name="col">Col.</param>
         void OnTriggerEnter2D(Collider2D col){
 			if (col.CompareTag("wall") || col.CompareTag("tank")){
 				rb2d.velocity = Vector2.zero;

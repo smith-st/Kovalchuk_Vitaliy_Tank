@@ -1,46 +1,58 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 
 namespace TestGame{
 	public class PlayerTank : Tank, IShotable {
-		[SerializeField]
-		private Transform bulletStart;
+		const float SHOT_DELAY= 0.5f;
 
 		[SerializeField]
-		private GameObject bulletPrefab;
+		Transform bulletStart;
 
-		private List <Bullet> pool = new List<Bullet> ();
+		[SerializeField]
+		GameObject bulletPrefab;
+		// пул снярядов
+		List <Bullet> pool = new List<Bullet> ();
 
-		private float shotDelay = 0.5f;
-		private bool canShot = true;
-
+		bool canShot = true;
+		/// <summary>
+		/// выстрел танка
+		/// </summary>
 		public void Shot(){
 			if (canShot && isLive) {
 				if (pool.Count > 0) {
+					//используем снярд из пула
 					pool[0].Shot(gameObject.transform.right,bulletStart.position);
 					pool.RemoveAt (0);
 				} else {
+					//создаем новый снаряд
 					GameObject go = Instantiate(bulletPrefab, bulletStart.position, Quaternion.identity);
 					go.GetComponent<Bullet> ().Shot (gameObject.transform.right);
 				}
 				canShot = false;
-				Invoke ("BullteReload", shotDelay);
+				Invoke ("BullteReload", SHOT_DELAY);
 			}
 		}
-
+		/// <summary>
+		/// возвращаем снярд
+		/// </summary>
+		/// <param name="bullet">Bullet.</param>
 		public void AddBullet(Bullet bullet){
 			pool.Add (bullet);
 		}
-
-		void BullteReload(){
-			canShot = true;
-		}
-
+		/// <summary>
+		/// столкновение с другим танком
+		/// </summary>
 		protected override void CollisionWithTank (){
 			base.CollisionWithTank ();
 			DestroyMe ();
 		}
+		/// <summary>
+		/// перезарядка завершена
+		/// </summary>
+		void BullteReload(){
+			canShot = true;
+		}
+
 	}
 }

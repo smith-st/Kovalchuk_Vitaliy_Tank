@@ -8,21 +8,22 @@ namespace TestGame{
 		public List<Sprite> skin = new List<Sprite>(); 
 		SpriteRenderer spriteRenderer;
 
-		protected override void Awake (){
-			base.Awake ();
-			spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer> ();
-			SetSkin ();
-		}
-
-		private void SetSkin(){
-			if (spriteRenderer != null) 
-				spriteRenderer.sprite = skin [Random.Range (0, skin.Count)];
-		}
-
 		public override void Respawn (){
 			base.Respawn ();
 			SetSkin ();
 		}
 
+		protected override void Awake (){
+			base.Awake ();
+			spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer> ();
+			SetSkin ();
+		}
+		/// <summary>
+		/// задает новый скин
+		/// </summary>
+		void SetSkin(){
+			if (spriteRenderer != null) 
+				spriteRenderer.sprite = skin [Random.Range (0, skin.Count)];
+		}
 	}
 }

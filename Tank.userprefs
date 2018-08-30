@@ -1,22 +1,29 @@
 ﻿<Properties RefactoringSettings.EnableRefactorings="True" StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EvilTank.cs">
     <Files>
-      <File FileName="Assets\Scripts\GameController.cs" Line="26" Column="44" />
-      <File FileName="Assets\Scripts\Tank.cs" Line="25" Column="100" />
-      <File FileName="Assets\Scripts\IMoveable.cs" Line="5" Column="1" />
-      <File FileName="Assets\Scripts\PlayerTank.cs" Line="7" Column="34" />
-      <File FileName="Assets\Scripts\Bullet.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\IShotable.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EvilTank.cs" Line="32" Column="37" />
-      <File FileName="Assets\Scripts\Boom.cs" Line="9" Column="14" />
+      <File FileName="Assets\Scripts\GameController.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets\Scripts\IMoveable.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets\Scripts\PlayerTank.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets\Scripts\Bullet.cs" Line="27" Column="50" NotebookId="1" />
+      <File FileName="Assets\Scripts\EvilTank.cs" Line="96" Column="33" NotebookId="1" />
+      <File FileName="Assets\Scripts\Boom.cs" Line="8" Column="3" NotebookId="1" />
+      <File FileName="Assets\Scripts\GameEvent.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets\Scripts\SkinableTank.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets\Scripts\IShotable.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets\Scripts\Tank.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Common.targets" Line="973" Column="10" NotebookId="1" />
     </Files>
+    <FloatingWindows>
+      <FloatingWindow WindowId="1" X="1920" Y="58" Width="911" Height="653">
+        <Files>
+          <File FileName="Assets\Scripts\PlayerController.cs" Line="8" Column="3" />
+        </Files>
+      </FloatingWindow>
+    </FloatingWindows>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="D:\!!! DESIGN\!!! Games Unity\Tank\Assets\Scripts\Bullet.cs" line="31" column="56" />
-      <Breakpoint file="D:\!!! DESIGN\!!! Games Unity\Tank\Assets\Scripts\EvilTank.cs" line="104" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

@@ -164,6 +164,46 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4987930417655764, guid: 53fd103248f4c104f88795c4a8197069,
     type: 2}
   m_PrefabInternal: {fileID: 92605820}
+--- !u!1 &143359830
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 143359832}
+  - component: {fileID: 143359831}
+  m_Layer: 0
+  m_Name: PlayerController
+  m_TagString: Untagged
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &143359831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 143359830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf58c0e1242268244a43d85f26e0694f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &143359832
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 143359830}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.01, y: -0.89, z: 2.238582}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &366626443
 Prefab:
   m_ObjectHideFlags: 0
@@ -241,7 +281,7 @@ Transform:
   - {fileID: 2027009410}
   - {fileID: 724831560}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -318,7 +358,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &724831559
 Prefab:
@@ -402,6 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5004f02d0f73d8848a82e6911ea90d3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
   playerTankPrefab: {fileID: 1940699171367534, guid: 00ba67d8369feb042b66147d491dc38b,
     type: 2}
   evilTankPrefab: {fileID: 1334954558749032, guid: bf0a06950edfff84c98a0c6a57a74b5b,
@@ -505,7 +546,7 @@ Transform:
   - {fileID: 92605821}
   - {fileID: 1333932146}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1300310181
 Prefab:
@@ -693,7 +734,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4945698555906058, guid: c7caf3e996843db4d8727d4cab35ee0a, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 212053969856403568, guid: c7caf3e996843db4d8727d4cab35ee0a,
         type: 2}
